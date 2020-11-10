@@ -21,7 +21,9 @@ function App() {
     }
 
     axios
-      .get(`http://localhost:4000/verifyToken?token=${token}`)
+      .get(
+        `https://login-auth-web-mini.herokuapp.com/verifyToken?token=${token}`
+      )
       .then((response) => {
         setUserSession(response.data.token, response.data.user);
         setAuthLoading(false);
