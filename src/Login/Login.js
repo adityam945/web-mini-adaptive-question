@@ -15,7 +15,7 @@ function Login(props) {
     setError(null);
     setLoading(true);
     axios
-      .post("https://login-auth-web-mini.herokuapp.com/", {
+      .post("https://login-auth-web-mini.herokuapp.com/users/signin", {
         username: username.value,
         password: password.value,
       })
