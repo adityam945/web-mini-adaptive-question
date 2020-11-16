@@ -69,6 +69,7 @@
   align-items: center;
   border: 5px solid #234668;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .correct {
