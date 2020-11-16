@@ -10,11 +10,10 @@ import PrivateRoute from "./Utils/PrivateRoute";
 import PublicRoute from "./Utils/PublicRoute";
 import { getToken, removeUserSession, setUserSession } from "./Utils/Common";
 import Quiz from "./Quiz/Quiz";
-import { Button } from "@material-ui/core";
 //
 //theme imports
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./Themes/globalStyles";
+import { GlobalStyles, Button } from "./Themes/globalStyles";
 import { lightTheme, darkTheme } from "./Themes/Themes";
 //
 //
@@ -57,15 +56,32 @@ function App() {
           <BrowserRouter>
             <div>
               <div className="header">
-                <NavLink exact activeClassName="active" to="/">
+                <NavLink
+                  exact
+                  activeClassName="active"
+                  to="/"
+                  className="headera"
+                >
                   Home
                 </NavLink>
 
-                <NavLink activeClassName="active" to="/dashboard">
+                <NavLink
+                  activeClassName="active"
+                  to="/dashboard"
+                  className="headera"
+                >
                   Dashboard
                 </NavLink>
-                <div />
-                <button onClick={themeToggler}>Switch Theme</button>
+                <div style={{ display: "flex", flex: 1 }} />
+                <Button onClick={themeToggler}>
+                  <a>
+                    {theme === "light" ? (
+                      <a>Switch to Dark Mode</a>
+                    ) : (
+                      <a>Switch to Light Mode</a>
+                    )}
+                  </a>
+                </Button>
               </div>
               <div className="content">
                 <Switch>

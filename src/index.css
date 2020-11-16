@@ -22,15 +22,16 @@ code {
   background: #546e7a;
   border-bottom: 1px solid #999;
   height: 40px;
+  color: black;
 }
-.header a {
-  color: white;
+.headera {
   text-decoration: none;
   margin-left: 20px;
   margin-right: 5px;
-}
-.header a:hover {
   color: black;
+}
+.headera:hover {
+  color: wheat;
 }
 
 .header .active {

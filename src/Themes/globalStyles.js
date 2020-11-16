@@ -63,3 +63,10 @@ export const QuizColorStyle = createGlobalStyle`
     transition: all 0.50s linear;
   }
   `;
+
+export const Button = styled.button`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+  border: 2px solid;
+  border-radius: 3px;
+`;
