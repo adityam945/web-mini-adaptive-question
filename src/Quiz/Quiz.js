@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Quiz.css";
 import { Link, withRouter, NavLink } from "react-router-dom";
+import { QuizColor, QuizColorStyle } from "../Themes/globalStyles";
 
 function App() {
   //
@@ -267,351 +268,358 @@ function App() {
     setShowScoreFinalHard(false);
   };
   return (
-    <div>
-      <button className="buttonGoBAck">
-        <NavLink
-          activeClassName="active"
-          to="/dashboard"
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          Exit Quiz
-        </NavLink>
-      </button>
+    <QuizColor>
+      <QuizColorStyle />
+      <div>
+        <button className="buttonGoBAck">
+          <NavLink
+            activeClassName="active"
+            to="/dashboard"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Exit Quiz
+          </NavLink>
+        </button>
 
-      <div className="bodyQuiz">
-        {sectionOne && <h1>Section1</h1>}
-        {sectionOne && (
-          <div className="appQuiz">
-            {showScore ? (
-              <div className="score-section">
-                You scored {score} out of {questions.length}
-                <br />
-                {score >= 3 && (
-                  <div>
-                    <button
-                      className="buttonNextSection"
-                      onClick={() => handleHardSection()}
-                    >
-                      Next Section
-                    </button>
-                  </div>
-                )}
-                {score < 3 && (
-                  <div>
-                    <button
-                      className="buttonNextSection"
-                      onClick={() => handleEasySection()}
-                    >
-                      Next Section
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <>
-                <div className="question-section">
-                  <div className="question-count">
-                    <span>Question {currentQuestion + 1}</span>/
-                    {questions.length}
-                  </div>
-                  <div className="question-text">
-                    {questions[currentQuestion].questionText}
-                    <br />
-                    {currentQuestion >= 1 && (
+        <div className="bodyQuiz">
+          {sectionOne && <h1>Section1</h1>}
+          {sectionOne && (
+            <div className="appQuiz">
+              {showScore ? (
+                <div className="score-section">
+                  You scored {score} out of {questions.length}
+                  <br />
+                  {score >= 3 && (
+                    <div>
                       <button
-                        className="buttonQuizPrevious"
-                        onClick={() =>
-                          handlePreviousOptionClick(currentQuestion)
-                        }
+                        className="buttonNextSection"
+                        onClick={() => handleHardSection()}
                       >
-                        Prev question
+                        Next Section
                       </button>
-                    )}
-                  </div>
-                </div>
-                <div className="answer-section">
-                  {questions[currentQuestion].answerOptions.map(
-                    (answerOption) => (
+                    </div>
+                  )}
+                  {score < 3 && (
+                    <div>
                       <button
-                        className="buttonQuiz"
-                        onClick={() =>
-                          handleAnswerOptionClick(answerOption.isCorrect)
-                        }
+                        className="buttonNextSection"
+                        onClick={() => handleEasySection()}
                       >
-                        {answerOption.answerText}
+                        Next Section
                       </button>
-                    )
+                    </div>
                   )}
                 </div>
-              </>
-            )}
-          </div>
-        )}
-
-        {hard && <h1>Hard Section 2</h1>}
-        {hard && (
-          <div className="appQuiz">
-            {showScoreHard ? (
-              <div className="score-section">
-                You scored {scoreHard} out of {hardquestion.length}
-                <br />
-                <button
-                  className="buttonNextSection"
-                  onClick={() => finalScoreHard()}
-                >
-                  Final Score
-                </button>{" "}
-              </div>
-            ) : (
-              <>
-                <div className="question-section">
-                  <div className="question-count">
-                    <span>Question {currentQuestionHard + 1}</span>/
-                    {hardquestion.length}
+              ) : (
+                <>
+                  <div className="question-section">
+                    <div className="question-count">
+                      <span>Question {currentQuestion + 1}</span>/
+                      {questions.length}
+                    </div>
+                    <div className="question-text">
+                      {questions[currentQuestion].questionText}
+                      <br />
+                      {currentQuestion >= 1 && (
+                        <button
+                          className="buttonQuizPrevious"
+                          onClick={() =>
+                            handlePreviousOptionClick(currentQuestion)
+                          }
+                        >
+                          Prev question
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  <div className="question-text">
-                    {hardquestion[currentQuestionHard].questionText}
-                    <br />
-                    {currentQuestionHard >= 1 && (
-                      <button
-                        className="buttonQuizPrevious"
-                        onClick={() =>
-                          handlePreviousOptionClickHard(currentQuestionHard)
-                        }
-                      >
-                        Prev question
-                      </button>
+                  <div className="answer-section">
+                    {questions[currentQuestion].answerOptions.map(
+                      (answerOption) => (
+                        <button
+                          className="buttonQuiz"
+                          onClick={() =>
+                            handleAnswerOptionClick(answerOption.isCorrect)
+                          }
+                        >
+                          {answerOption.answerText}
+                        </button>
+                      )
                     )}
                   </div>
+                </>
+              )}
+            </div>
+          )}
+
+          {hard && <h1>Hard Section 2</h1>}
+          {hard && (
+            <div className="appQuiz">
+              {showScoreHard ? (
+                <div className="score-section">
+                  You scored {scoreHard} out of {hardquestion.length}
+                  <br />
+                  <button
+                    className="buttonNextSection"
+                    onClick={() => finalScoreHard()}
+                  >
+                    Final Score
+                  </button>{" "}
                 </div>
-                <div className="answer-section">
-                  {hardquestion[currentQuestion].answerOptions.map(
-                    (answerOption) => (
-                      <button
-                        className="buttonQuiz"
-                        onClick={() =>
-                          handleAnswerOptionClickHard(answerOption.isCorrect)
-                        }
-                      >
-                        {answerOption.answerText}
-                      </button>
-                    )
-                  )}
+              ) : (
+                <>
+                  <div className="question-section">
+                    <div className="question-count">
+                      <span>Question {currentQuestionHard + 1}</span>/
+                      {hardquestion.length}
+                    </div>
+                    <div className="question-text">
+                      {hardquestion[currentQuestionHard].questionText}
+                      <br />
+                      {currentQuestionHard >= 1 && (
+                        <button
+                          className="buttonQuizPrevious"
+                          onClick={() =>
+                            handlePreviousOptionClickHard(currentQuestionHard)
+                          }
+                        >
+                          Prev question
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  <div className="answer-section">
+                    {hardquestion[currentQuestion].answerOptions.map(
+                      (answerOption) => (
+                        <button
+                          className="buttonQuiz"
+                          onClick={() =>
+                            handleAnswerOptionClickHard(answerOption.isCorrect)
+                          }
+                        >
+                          {answerOption.answerText}
+                        </button>
+                      )
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+          {easy && <h1>Easy Section 2</h1>}
+          {easy && (
+            <div className="appQuiz">
+              {showScoreEasy ? (
+                <div className="score-section">
+                  You scored {scoreEasy} out of {questions.length}
+                  <br />
+                  <button
+                    className="buttonNextSection"
+                    onClick={() => finalScoreEasy()}
+                  >
+                    Final Score
+                  </button>
                 </div>
-              </>
-            )}
-          </div>
-        )}
-        {easy && <h1>Easy Section 2</h1>}
-        {easy && (
-          <div className="appQuiz">
-            {showScoreEasy ? (
-              <div className="score-section">
-                You scored {scoreEasy} out of {questions.length}
-                <br />
+              ) : (
+                <>
+                  <div className="question-section">
+                    <div className="question-count">
+                      <span>Question {currentQuestionEasy + 1}</span>/
+                      {easyquestions.length}
+                    </div>
+                    <div className="question-text">
+                      {easyquestions[currentQuestionEasy].questionText}
+                      <br />
+                      {currentQuestionEasy >= 1 && (
+                        <button
+                          className="buttonQuizPrevious"
+                          onClick={() =>
+                            handlePreviousOptionClick(currentQuestion)
+                          }
+                        >
+                          Previous question
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  <div className="answer-section">
+                    {easyquestions[currentQuestionEasy].answerOptions.map(
+                      (answerOption) => (
+                        <button
+                          className="buttonQuiz"
+                          onClick={() =>
+                            handleAnswerOptionClickEasy(answerOption.isCorrect)
+                          }
+                        >
+                          {answerOption.answerText}
+                        </button>
+                      )
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+          {showScoreFinalEasy && (
+            <div
+              className="appQuiz"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <p>
+                <h2>Section 1</h2>
+                You scored {score} out of {questions.length} <br />
+                <h2> Section 2</h2>
+                You scored {scoreEasy} out of {questions.length} <br />
+              </p>
+              <div>
                 <button
                   className="buttonNextSection"
-                  onClick={() => finalScoreEasy()}
+                  onClick={() => window.location.reload()}
                 >
-                  Final Score
+                  Retake Test
                 </button>
               </div>
-            ) : (
-              <>
-                <div className="question-section">
-                  <div className="question-count">
-                    <span>Question {currentQuestionEasy + 1}</span>/
-                    {easyquestions.length}
-                  </div>
-                  <div className="question-text">
-                    {easyquestions[currentQuestionEasy].questionText}
-                    <br />
-                    {currentQuestionEasy >= 1 && (
-                      <button
-                        className="buttonQuizPrevious"
-                        onClick={() =>
-                          handlePreviousOptionClick(currentQuestion)
-                        }
-                      >
-                        Previous question
-                      </button>
-                    )}
-                  </div>
+              <div style={{ marginTop: 30 }}>
+                <button
+                  className="buttonNextSection"
+                  onClick={() => handleShowRightAnswersEasy()}
+                >
+                  Show Answers
+                </button>
+              </div>
+            </div>
+          )}
+          {showScoreFinalHard && (
+            <div
+              className="appQuiz"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: 60,
+              }}
+            >
+              <p>
+                <h2>Section 1</h2>
+                You scored {score} out of {questions.length} <br />
+                <h2> Section 2</h2>
+                You scored {scoreHard} out of {questions.length} <br />
+              </p>
+              <div>
+                <button
+                  className="buttonNextSection"
+                  onClick={() => window.location.reload()}
+                >
+                  Retake Test
+                </button>
+              </div>
+              <div style={{ marginTop: 30 }}>
+                <button
+                  className="buttonNextSection"
+                  onClick={() => handleShowRightAnswersHard()}
+                >
+                  Show Answers
+                </button>
+              </div>
+            </div>
+          )}
+          {showRightAnwsersEasy && (
+            <div
+              className="appQuiz"
+              style={{ flexDirection: "column", marginTop: 60 }}
+            >
+              <h2> Section 1</h2>
+              {questions.map((item) => (
+                <div>
+                  {item.questionText}
+                  <br />
+
+                  {item.answerOptions.map((item1) => (
+                    <div>
+                      {item1.isCorrect === true ? (
+                        <p style={{ color: "green" }}>
+                          {item1.answerText} {"=>"}true
+                        </p>
+                      ) : (
+                        <p style={{ color: "red" }}>{item1.answerText}</p>
+                      )}
+                    </div>
+                  ))}
+                  <br />
                 </div>
-                <div className="answer-section">
-                  {easyquestions[currentQuestionEasy].answerOptions.map(
-                    (answerOption) => (
-                      <button
-                        className="buttonQuiz"
-                        onClick={() =>
-                          handleAnswerOptionClickEasy(answerOption.isCorrect)
-                        }
-                      >
-                        {answerOption.answerText}
-                      </button>
-                    )
-                  )}
+              ))}
+              <h2> Section 2</h2>
+              {easyquestions.map((item) => (
+                <div>
+                  {item.questionText}
+                  <br />
+
+                  {item.answerOptions.map((item1) => (
+                    <div>
+                      {item1.isCorrect === true ? (
+                        <p style={{ color: "green" }}>
+                          {item1.answerText} {"=>"}true
+                        </p>
+                      ) : (
+                        <p style={{ color: "red" }}>{item1.answerText}</p>
+                      )}
+                    </div>
+                  ))}
+                  <br />
                 </div>
-              </>
-            )}
-          </div>
-        )}
-        {showScoreFinalEasy && (
-          <div
-            className="appQuiz"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <p>
-              <h2>Section 1</h2>
-              You scored {score} out of {questions.length} <br />
+              ))}
+            </div>
+          )}
+          {showRightAnwsersHard && (
+            <div className="appQuiz" style={{ flexDirection: "column" }}>
+              <h2> Section 1</h2>
+              {questions.map((item) => (
+                <div>
+                  {item.questionText}
+                  <br />
+
+                  {item.answerOptions.map((item1) => (
+                    <div>
+                      {item1.isCorrect === true ? (
+                        <p style={{ color: "green" }}>
+                          {item1.answerText} {"=>"}true
+                        </p>
+                      ) : (
+                        <p style={{ color: "red" }}>{item1.answerText}</p>
+                      )}
+                    </div>
+                  ))}
+                  <br />
+                </div>
+              ))}
               <h2> Section 2</h2>
-              You scored {scoreEasy} out of {questions.length} <br />
-            </p>
-            <div>
-              <button
-                className="buttonNextSection"
-                onClick={() => window.location.reload()}
-              >
-                Retake Test
-              </button>
-            </div>
-            <div style={{ marginTop: 30 }}>
-              <button
-                className="buttonNextSection"
-                onClick={() => handleShowRightAnswersEasy()}
-              >
-                Show Answers
-              </button>
-            </div>
-          </div>
-        )}
-        {showScoreFinalHard && (
-          <div
-            className="appQuiz"
-            style={{ display: "flex", flexDirection: "column", marginTop: 60 }}
-          >
-            <p>
-              <h2>Section 1</h2>
-              You scored {score} out of {questions.length} <br />
-              <h2> Section 2</h2>
-              You scored {scoreHard} out of {questions.length} <br />
-            </p>
-            <div>
-              <button
-                className="buttonNextSection"
-                onClick={() => window.location.reload()}
-              >
-                Retake Test
-              </button>
-            </div>
-            <div style={{ marginTop: 30 }}>
-              <button
-                className="buttonNextSection"
-                onClick={() => handleShowRightAnswersHard()}
-              >
-                Show Answers
-              </button>
-            </div>
-          </div>
-        )}
-        {showRightAnwsersEasy && (
-          <div
-            className="appQuiz"
-            style={{ flexDirection: "column", marginTop: 60 }}
-          >
-            <h2> Section 1</h2>
-            {questions.map((item) => (
-              <div>
-                {item.questionText}
-                <br />
+              {hardquestion.map((item) => (
+                <div>
+                  {item.questionText}
+                  <br />
 
-                {item.answerOptions.map((item1) => (
-                  <div>
-                    {item1.isCorrect === true ? (
-                      <p style={{ color: "green" }}>
-                        {item1.answerText} {"=>"}true
-                      </p>
-                    ) : (
-                      <p style={{ color: "red" }}>{item1.answerText}</p>
-                    )}
-                  </div>
-                ))}
-                <br />
-              </div>
-            ))}
-            <h2> Section 2</h2>
-            {easyquestions.map((item) => (
-              <div>
-                {item.questionText}
-                <br />
-
-                {item.answerOptions.map((item1) => (
-                  <div>
-                    {item1.isCorrect === true ? (
-                      <p style={{ color: "green" }}>
-                        {item1.answerText} {"=>"}true
-                      </p>
-                    ) : (
-                      <p style={{ color: "red" }}>{item1.answerText}</p>
-                    )}
-                  </div>
-                ))}
-                <br />
-              </div>
-            ))}
-          </div>
-        )}
-        {showRightAnwsersHard && (
-          <div className="appQuiz" style={{ flexDirection: "column" }}>
-            <h2> Section 1</h2>
-            {questions.map((item) => (
-              <div>
-                {item.questionText}
-                <br />
-
-                {item.answerOptions.map((item1) => (
-                  <div>
-                    {item1.isCorrect === true ? (
-                      <p style={{ color: "green" }}>
-                        {item1.answerText} {"=>"}true
-                      </p>
-                    ) : (
-                      <p style={{ color: "red" }}>{item1.answerText}</p>
-                    )}
-                  </div>
-                ))}
-                <br />
-              </div>
-            ))}
-            <h2> Section 2</h2>
-            {hardquestion.map((item) => (
-              <div>
-                {item.questionText}
-                <br />
-
-                {item.answerOptions.map((item1) => (
-                  <div>
-                    {item1.isCorrect === true ? (
-                      <p style={{ color: "green" }}>
-                        {item1.answerText} {"=>"}true
-                      </p>
-                    ) : (
-                      <p style={{ color: "red" }}>{item1.answerText}</p>
-                    )}
-                  </div>
-                ))}
-                <br />
-              </div>
-            ))}
-          </div>
-        )}
+                  {item.answerOptions.map((item1) => (
+                    <div>
+                      {item1.isCorrect === true ? (
+                        <p style={{ color: "green" }}>
+                          {item1.answerText} {"=>"}true
+                        </p>
+                      ) : (
+                        <p style={{ color: "red" }}>{item1.answerText}</p>
+                      )}
+                    </div>
+                  ))}
+                  <br />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </QuizColor>
   );
 }
 

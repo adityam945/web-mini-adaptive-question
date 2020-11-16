@@ -3,6 +3,7 @@ import axios from "axios";
 import { setUserSession } from "../Utils/Common";
 import "./Login.css";
 import { Button, Grid, Typography } from "@material-ui/core";
+import { LoginCardColor, LogColor } from "../Themes/globalStyles";
 
 function Login(props) {
   const [loading, setLoading] = useState(false);
@@ -33,71 +34,73 @@ function Login(props) {
   };
 
   return (
-    <div className="main">
-      <div className="app">
-        <Grid container>
-          <Grid
-            item
-            xs={12}
-            md={12}
-            lg={12}
-            justify="top"
-            alignContent="top"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              display: "flex",
-              flex: 1,
-            }}
-          >
-            <h2 style={{ textAlign: "center" }}>Login</h2>
-            <br />
-            <div>
-              <label className="textToRight" style={{ fontSize: "20px" }}>
-                Username
-              </label>
+    <LoginCardColor>
+      <div className="main1">
+        <div className="app">
+          <Grid container>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              lg={12}
+              justify="top"
+              alignContent="top"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                display: "flex",
+                flex: 1,
+              }}
+            >
+              <h2 style={{ textAlign: "center" }}>Login</h2>
+              <br />
+              <div>
+                <label className="textToRight" style={{ fontSize: "20px" }}>
+                  Username
+                </label>
 
-              <br />
-              <input
-                className="textToRight"
-                type="text"
-                {...username}
-                autoComplete="new-password"
-                style={{ width: "100%" }}
-              />
-            </div>
-            <div style={{ marginTop: 10 }}>
-              <label className="textToRight" style={{ fontSize: "20px" }}>
-                Password
-              </label>
-              <br />
-              <input
-                className="textToRight"
-                type="password"
-                {...password}
-                autoComplete="new-password"
-                style={{ width: "100%" }}
-              />
-            </div>
-            {error && (
-              <>
-                <small style={{ color: "red" }}>{error}</small>
                 <br />
-              </>
-            )}
-            <br />
-            <input
-              className="buttonTakeQuiz"
-              type="button"
-              value={loading ? "Loading..." : "Login"}
-              onClick={handleLogin}
-              disabled={loading}
-            />
-            <br />
+                <input
+                  className="textToRight"
+                  type="text"
+                  {...username}
+                  autoComplete="new-password"
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <label className="textToRight" style={{ fontSize: "20px" }}>
+                  Password
+                </label>
+                <br />
+                <input
+                  className="textToRight"
+                  type="password"
+                  {...password}
+                  autoComplete="new-password"
+                  style={{ width: "100%" }}
+                />
+              </div>
+              {error && (
+                <>
+                  <small style={{ color: "red" }}>{error}</small>
+                  <br />
+                </>
+              )}
+              <br />
+              <input
+                className="buttonTakeQuiz"
+                type="button"
+                value={loading ? "Loading..." : "Login"}
+                onClick={handleLogin}
+                disabled={loading}
+              />
+              <br />
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
       </div>
-    </div>
+    </LoginCardColor>
   );
 }
 

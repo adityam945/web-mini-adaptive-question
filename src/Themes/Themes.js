@@ -4,6 +4,12 @@ export const lightTheme = {
   toggleBorder: "#FFF",
   background: "#363537",
   color: "black",
+  //
+  loginCard: "#fff9c4",
+  loginCardBg: "#fff9c4",
+  //
+  QuizCard: "",
+  QuizCardBg: "#b2ebf2",
 };
 export const darkTheme = {
   body: "#363537",
@@ -11,4 +17,10 @@ export const darkTheme = {
   toggleBorder: "#6B8096",
   background: "#999",
   color: "white",
+  //
+  loginCard: "",
+  loginCardBg: "#263238",
+  //
+  QuizCard: "",
+  QuizCardBg: "#263238",
 };

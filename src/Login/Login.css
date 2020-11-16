@@ -31,12 +31,6 @@
   width: 100%;
 }
 
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffecb3;
-}
 .inputFiled {
   height: 30px;
   border-radius: 3px;
