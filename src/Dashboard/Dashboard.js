@@ -46,7 +46,11 @@ function Dashboard(props) {
                 className="buttonTakeQuiz"
                 style={{ textDecoration: "none", color: "black" }}
               >
-                <NavLink activeClassName="active" to="/quiz">
+                <NavLink
+                  activeClassName="active"
+                  to="/quiz"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
                   Take Quiz
                 </NavLink>
               </button>
