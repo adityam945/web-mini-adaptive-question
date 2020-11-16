@@ -7,7 +7,7 @@
 }
 
 .appQuiz {
-  min-width: 800px;
+  min-width: 1000px;
   min-height: 200px;
 }
 
@@ -26,7 +26,8 @@
 }
 
 .question-count {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .question-count span {
@@ -53,6 +54,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 10px;
 }
 
 .buttonQuiz {
@@ -103,6 +105,7 @@
   border-radius: 5px;
   align-items: center;
   cursor: pointer;
+  margin: 20px;
 }
 
 .buttonNextSection {

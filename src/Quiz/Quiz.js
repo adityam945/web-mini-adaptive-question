@@ -311,42 +311,57 @@ function App() {
                   )}
                 </div>
               ) : (
-                <>
+                <div style={{ width: "100%" }}>
                   <div className="question-section">
                     <div className="question-count">
                       <span>Question {currentQuestion + 1}</span>/
                       {questions.length}
                     </div>
-                    <div className="question-text">
-                      {questions[currentQuestion].questionText}
-                      <br />
-                      {currentQuestion >= 1 && (
-                        <button
-                          className="buttonQuizPrevious"
-                          onClick={() =>
-                            handlePreviousOptionClick(currentQuestion)
-                          }
-                        >
-                          Prev question
-                        </button>
-                      )}
+
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div
+                        style={{
+                          minWidth: "65%",
+
+                          marginRight: 20,
+                          textAlign: "justify",
+                        }}
+                      >
+                        {questions[currentQuestion].questionText} <br />
+                        {currentQuestion >= 1 && (
+                          <button
+                            className="buttonQuizPrevious"
+                            onClick={() =>
+                              handlePreviousOptionClick(currentQuestion)
+                            }
+                          >
+                            Prev question
+                          </button>
+                        )}
+                      </div>
+                      <div
+                        style={{ borderRight: 2, borderRightStyle: "solid" }}
+                      />
+                      {/* 
+
+                       */}
+                      <div className="answer-section">
+                        {questions[currentQuestion].answerOptions.map(
+                          (answerOption) => (
+                            <button
+                              className="buttonQuiz"
+                              onClick={() =>
+                                handleAnswerOptionClick(answerOption.isCorrect)
+                              }
+                            >
+                              {answerOption.answerText}
+                            </button>
+                          )
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <div className="answer-section">
-                    {questions[currentQuestion].answerOptions.map(
-                      (answerOption) => (
-                        <button
-                          className="buttonQuiz"
-                          onClick={() =>
-                            handleAnswerOptionClick(answerOption.isCorrect)
-                          }
-                        >
-                          {answerOption.answerText}
-                        </button>
-                      )
-                    )}
-                  </div>
-                </>
+                </div>
               )}
             </div>
           )}
