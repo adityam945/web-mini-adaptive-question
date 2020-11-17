@@ -91,7 +91,7 @@ function Login(props) {
               <input
                 className="buttonTakeQuiz"
                 type="button"
-                value={loading ? "Loading..." : "Login"}
+                value={loading ? "Please Wait(Authenticating User)" : "Login"}
                 onClick={handleLogin}
                 disabled={loading}
               />

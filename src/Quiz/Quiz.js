@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./Quiz.css";
 import { Link, withRouter, NavLink } from "react-router-dom";
 import { QuizColor, QuizColorStyle } from "../Themes/globalStyles";
+import { getUser, removeUserSession } from "../Utils/Common";
 
 function App() {
+  const user = getUser();
+
   //
   const questions = [
     {
@@ -259,6 +262,12 @@ function App() {
     }
   };
 
+  const handlePreviousOptionClickEasy = (thisQuestion) => {
+    const nextQuestion = thisQuestion - 1;
+    if (nextQuestion < easyquestions.length) {
+      setCurrentQuestionHard(nextQuestion);
+    }
+  };
   const handleShowRightAnswersEasy = () => {
     setShowRightAnwsersEasy(true);
     setShowScoreFinalEasy(false);
@@ -271,6 +280,7 @@ function App() {
     <QuizColor>
       <QuizColorStyle />
       <div>
+        <div></div>
         <button className="buttonGoBAck">
           <NavLink
             activeClassName="active"
@@ -282,7 +292,14 @@ function App() {
         </button>
 
         <div className="bodyQuiz">
-          {sectionOne && <h1>Section1</h1>}
+          {sectionOne && (
+            <div>
+              <h1>Section 1</h1>
+              <div style={{ marginBottom: 20 }}>
+                Questions in this section: {questions.length}
+              </div>
+            </div>
+          )}
           {sectionOne && (
             <div className="appQuiz">
               {showScore ? (
@@ -335,7 +352,7 @@ function App() {
                               handlePreviousOptionClick(currentQuestion)
                             }
                           >
-                            Prev question
+                            Previous question
                           </button>
                         )}
                       </div>
@@ -366,7 +383,14 @@ function App() {
             </div>
           )}
 
-          {hard && <h1>Hard Section 2</h1>}
+          {hard && (
+            <div>
+              <h1>Hard Section 2</h1>
+              <div style={{ marginBottom: 20 }}>
+                Questions in this section: {hardquestion.length}
+              </div>
+            </div>
+          )}
           {hard && (
             <div className="appQuiz">
               {showScoreHard ? (
@@ -381,46 +405,70 @@ function App() {
                   </button>{" "}
                 </div>
               ) : (
-                <>
+                <div style={{ width: "100%" }}>
                   <div className="question-section">
                     <div className="question-count">
                       <span>Question {currentQuestionHard + 1}</span>/
                       {hardquestion.length}
                     </div>
-                    <div className="question-text">
-                      {hardquestion[currentQuestionHard].questionText}
-                      <br />
-                      {currentQuestionHard >= 1 && (
-                        <button
-                          className="buttonQuizPrevious"
-                          onClick={() =>
-                            handlePreviousOptionClickHard(currentQuestionHard)
-                          }
-                        >
-                          Prev question
-                        </button>
-                      )}
+
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div
+                        style={{
+                          minWidth: "65%",
+
+                          marginRight: 20,
+                          textAlign: "justify",
+                        }}
+                      >
+                        {hardquestion[currentQuestionHard].questionText} <br />
+                        {currentQuestionHard >= 1 && (
+                          <button
+                            className="buttonQuizPrevious"
+                            onClick={() =>
+                              handlePreviousOptionClickHard(currentQuestionHard)
+                            }
+                          >
+                            Previous question
+                          </button>
+                        )}
+                      </div>
+                      <div
+                        style={{ borderRight: 2, borderRightStyle: "solid" }}
+                      />
+                      {/* 
+
+                     */}
+                      <div className="answer-section">
+                        {hardquestion[currentQuestionHard].answerOptions.map(
+                          (answerOption) => (
+                            <button
+                              className="buttonQuiz"
+                              onClick={() =>
+                                handleAnswerOptionClickHard(
+                                  answerOption.isCorrect
+                                )
+                              }
+                            >
+                              {answerOption.answerText}
+                            </button>
+                          )
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <div className="answer-section">
-                    {hardquestion[currentQuestion].answerOptions.map(
-                      (answerOption) => (
-                        <button
-                          className="buttonQuiz"
-                          onClick={() =>
-                            handleAnswerOptionClickHard(answerOption.isCorrect)
-                          }
-                        >
-                          {answerOption.answerText}
-                        </button>
-                      )
-                    )}
-                  </div>
-                </>
+                </div>
               )}
             </div>
           )}
-          {easy && <h1>Easy Section 2</h1>}
+          {easy && (
+            <div>
+              <h1>Easy Section 3</h1>
+              <div style={{ marginBottom: 20 }}>
+                Questions in this section: {easyquestions.length}
+              </div>
+            </div>
+          )}
           {easy && (
             <div className="appQuiz">
               {showScoreEasy ? (
@@ -435,42 +483,59 @@ function App() {
                   </button>
                 </div>
               ) : (
-                <>
+                <div style={{ width: "100%" }}>
                   <div className="question-section">
                     <div className="question-count">
                       <span>Question {currentQuestionEasy + 1}</span>/
                       {easyquestions.length}
                     </div>
-                    <div className="question-text">
-                      {easyquestions[currentQuestionEasy].questionText}
-                      <br />
-                      {currentQuestionEasy >= 1 && (
-                        <button
-                          className="buttonQuizPrevious"
-                          onClick={() =>
-                            handlePreviousOptionClick(currentQuestion)
-                          }
-                        >
-                          Previous question
-                        </button>
-                      )}
+
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <div
+                        style={{
+                          minWidth: "65%",
+
+                          marginRight: 20,
+                          textAlign: "justify",
+                        }}
+                      >
+                        {easyquestions[currentQuestionEasy].questionText} <br />
+                        {currentQuestionEasy >= 1 && (
+                          <button
+                            className="buttonQuizPrevious"
+                            onClick={() =>
+                              handlePreviousOptionClickEasy(currentQuestionEasy)
+                            }
+                          >
+                            Previous question
+                          </button>
+                        )}
+                      </div>
+                      <div
+                        style={{ borderRight: 2, borderRightStyle: "solid" }}
+                      />
+                      {/* 
+
+                     */}
+                      <div className="answer-section">
+                        {easyquestions[currentQuestionEasy].answerOptions.map(
+                          (answerOption) => (
+                            <button
+                              className="buttonQuiz"
+                              onClick={() =>
+                                handleAnswerOptionClickEasy(
+                                  answerOption.isCorrect
+                                )
+                              }
+                            >
+                              {answerOption.answerText}
+                            </button>
+                          )
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <div className="answer-section">
-                    {easyquestions[currentQuestionEasy].answerOptions.map(
-                      (answerOption) => (
-                        <button
-                          className="buttonQuiz"
-                          onClick={() =>
-                            handleAnswerOptionClickEasy(answerOption.isCorrect)
-                          }
-                        >
-                          {answerOption.answerText}
-                        </button>
-                      )
-                    )}
-                  </div>
-                </>
+                </div>
               )}
             </div>
           )}
@@ -491,6 +556,9 @@ function App() {
                 You scored {scoreEasy} out of {questions.length} <br />
               </p>
               <div>
+                <h2> Total Score is {score + scoreEasy}</h2>
+              </div>
+              <div style={{ marginTop: 20 }}>
                 <button
                   className="buttonNextSection"
                   onClick={() => window.location.reload()}
@@ -514,7 +582,8 @@ function App() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                marginTop: 60,
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <p>
@@ -524,6 +593,9 @@ function App() {
                 You scored {scoreHard} out of {questions.length} <br />
               </p>
               <div>
+                <h2> Total Score is {score + scoreHard}</h2>
+              </div>
+              <div style={{ marginTop: 20 }}>
                 <button
                   className="buttonNextSection"
                   onClick={() => window.location.reload()}
