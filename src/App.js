@@ -45,7 +45,7 @@ function App() {
   }, []);
 
   if (authLoading && getToken()) {
-    return <div className="content">Checking Authentication...</div>;
+    return <div className=" ">Checking Authentication...</div>;
   }
 
   return (
