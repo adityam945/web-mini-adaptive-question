@@ -86,6 +86,7 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.text};
   border: 2px solid;
   border-radius: 3px;
+  padding: 10px;
 `;
 
 export const QuizCardColor = styled.div`
@@ -126,5 +127,14 @@ export const QuizCardColor = styled.div`
     transition-duration: 0.4s;
     border-radius: 4px;
     margin: 30px;
+  }
+`;
+
+export const ProfileCard = styled.div`
+  .mainProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.loginCardBg};
   }
 `;

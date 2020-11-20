@@ -12,6 +12,7 @@ function Dashboard(props) {
   const user = getUser();
 
   // handle click event of logout button
+
   const handleLogout = () => {
     removeUserSession();
     props.history.push("/login");
@@ -51,16 +52,18 @@ function Dashboard(props) {
     return (
       <QuizCardColor>
         <div>
-          <h2 style={{ textAlign: "center" }}>
-            Welcome {user.name}!<br />
-          </h2>
-          <br />
-          <input
-            type="button"
-            onClick={handleLogout}
-            value="Logout"
-            className="buttonTakeQuiz"
-          />
+          <div>
+            <h2 style={{ textAlign: "center" }}>
+              Welcome {user.name}!<br />
+              <input
+                type="button"
+                onClick={handleLogout}
+                value="Logout"
+                className="buttonLogOut"
+              />
+            </h2>
+          </div>
+
           {quizQuestions.map((item) => (
             <div class="cardQuiz">
               <h2 class="" style={{ textAlign: "center" }}>
@@ -92,7 +95,7 @@ function Dashboard(props) {
             </div>
           ))}
 
-          <button
+          {/* <button
             style={{
               position: "absolute",
               width: 100,
@@ -108,7 +111,7 @@ function Dashboard(props) {
             }}
           >
             ChatBot
-          </button>
+          </button> */}
         </div>
       </QuizCardColor>
     );

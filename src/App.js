@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import axios from "axios";
+import ScrollToTop from "./ScrollToTop/ScrollTopPage";
 
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
@@ -10,6 +11,8 @@ import PrivateRoute from "./Utils/PrivateRoute";
 import PublicRoute from "./Utils/PublicRoute";
 import { getToken, removeUserSession, setUserSession } from "./Utils/Common";
 import Quiz from "./Quiz/Quiz";
+import Profile from "./Profile/Profile";
+import "./App.css";
 //
 //theme imports
 import { ThemeProvider } from "styled-components";
@@ -17,7 +20,12 @@ import { GlobalStyles, Button } from "./Themes/globalStyles";
 import { lightTheme, darkTheme } from "./Themes/Themes";
 //
 //
-function App() {
+function App(props) {
+  const handleLogout = () => {
+    removeUserSession();
+    props.history.push("/login");
+  };
+  const token = getToken();
   const [authLoading, setAuthLoading] = useState(true);
   const [theme, setTheme] = useState("light");
   const themeToggler = () => {
@@ -65,6 +73,8 @@ function App() {
         <GlobalStyles />
         <div className="App">
           <BrowserRouter>
+            <ScrollToTop />
+
             <div>
               <div className="header">
                 <NavLink
@@ -83,22 +93,46 @@ function App() {
                 >
                   Dashboard
                 </NavLink>
+                {token ? (
+                  <div style={{ display: "flex" }}>
+                    <NavLink
+                      activeClassName="active"
+                      to="/profile"
+                      className="headera"
+                    >
+                      View Profile
+                    </NavLink>
+                  </div>
+                ) : (
+                  <NavLink
+                    activeClassName="active"
+                    to="/login"
+                    className="headera"
+                  >
+                    Login
+                  </NavLink>
+                )}
+
                 <div style={{ display: "flex", flex: 1 }} />
-                <Button onClick={themeToggler}>
-                  <a>
-                    {theme === "light" ? (
-                      <a>Switch to Dark Mode</a>
-                    ) : (
-                      <a>Switch to Light Mode</a>
-                    )}
-                  </a>
-                </Button>
+
+                <div>
+                  <Button onClick={themeToggler}>
+                    <a>
+                      {theme === "light" ? (
+                        <a>Switch to Dark Mode</a>
+                      ) : (
+                        <a>Switch to Light Mode</a>
+                      )}
+                    </a>
+                  </Button>
+                </div>
               </div>
               <div className="content">
                 <Switch>
                   <Route exact path="/" component={Home} />
                   <PublicRoute path="/login" component={Login} />
                   <PrivateRoute path="/dashboard" component={Dashboard} />
+                  <PrivateRoute path="/profile" component={Profile} />
                   <PrivateRoute path="/quiz" component={Quiz} />
                 </Switch>
               </div>
