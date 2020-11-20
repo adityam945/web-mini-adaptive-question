@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getUser, removeUserSession } from "../Utils/Common";
 import "./Dashboard.css";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Switch, Route, NavLink, Link } from "react-router-dom";
+import { QuizCardColor, QuizColorStyle } from "../Themes/globalStyles";
 
 function Dashboard(props) {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  //
+  const [quizQuestions, setQuizQuestions] = useState([]);
   const user = getUser();
 
   // handle click event of logout button
@@ -11,55 +16,96 @@ function Dashboard(props) {
     removeUserSession();
     props.history.push("/login");
   };
+  useEffect(() => {
+    fetch("https://adaptive-question-api.herokuapp.com/quiz/")
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setQuizQuestions(result.Question);
+        },
 
-  return (
-    <div>
-      Welcome {user.name}!<br />
-      <br />
-      <input
-        type="button"
-        onClick={handleLogout}
-        value="Logout"
-        className="buttonTakeQuiz"
-      />
-      <h3>Avaliable Quiz</h3>
-      <div class="containerCard">
-        <div class="flipperCard">
-          <div class="frontCard">
-            <p class="captionCard">Quiz-1</p>
-            <h3 style={{ textAlign: "center" }}>Simple CSE quiz</h3>
-          </div>
-          <div class="backCard">
-            <a>
-              <h1 className="h1Card">Quiz-1</h1>
-            </a>
-            <p class="dateCard">Posted:9/11/2020</p>
-            <div
-              style={{
-                display: "flex",
-                alignContent: "center",
-                justifyContent: "center",
-                marginTop: "25px",
-              }}
-            >
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return (
+      <div class="wrapper">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+        <span class="circle circle-4"></span>
+        <span class="circle circle-5"></span>
+        <span class="circle circle-6"></span>
+        <span class="circle circle-7"></span>
+        <span class="circle circle-8"></span>
+      </div>
+    );
+  } else {
+    return (
+      <QuizCardColor>
+        <div>
+          <h2 style={{ textAlign: "center" }}>
+            Welcome {user.name}!<br />
+          </h2>
+          <br />
+          <input
+            type="button"
+            onClick={handleLogout}
+            value="Logout"
+            className="buttonTakeQuiz"
+          />
+          {quizQuestions.map((item) => (
+            <div class="cardQuiz">
+              <h2 class="" style={{ textAlign: "center" }}>
+                {item.quizNo}
+              </h2>
+              <h2 style={{ textAlign: "center" }}>{item.quizName}</h2>
+              <div class="containerQuiz">
+                <p style={{ textAlign: "center" }}>{item.quizDescription}</p>
+              </div>
               <button
-                className="buttonTakeQuiz"
+                className="buttonTakeQuizSyle"
                 style={{ textDecoration: "none", color: "black" }}
               >
-                <NavLink
+                <Link
                   activeClassName="active"
-                  to="/quiz"
+                  to={{ pathname: "/quiz", state: { id: item._id } }}
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  Take Quiz
-                </NavLink>
+                  Solve
+                </Link>
               </button>
             </div>
-          </div>
+          ))}
+
+          <button
+            style={{
+              position: "absolute",
+              width: 100,
+              height: 50,
+              bottom: 40,
+              right: 60,
+              backgroundColor: "green",
+              zIndex: 100,
+              borderRadius: 10,
+              borderColor: "red",
+              border: "solid",
+              borderWidth: 8,
+            }}
+          >
+            ChatBot
+          </button>
         </div>
-      </div>
-    </div>
-  );
+      </QuizCardColor>
+    );
+  }
 }
 
 export default Dashboard;

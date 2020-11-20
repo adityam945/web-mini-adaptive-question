@@ -70,3 +70,47 @@ export const Button = styled.button`
   border: 2px solid;
   border-radius: 3px;
 `;
+
+export const QuizCardColor = styled.div`
+  .cardQuiz {
+    background: ${({ theme }) => theme.loginCardBg};
+    color: ${({ theme }) => theme.text};
+    font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
+    transition: all 0.5s linear;
+  }
+  .buttonTakeQuizSyle {
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 145x;
+    letter-spacing: 1px;
+    position: relative;
+    background-color: #757575;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    margin: 30px;
+  }
+  .buttonTakeQuiz {
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 145x;
+    letter-spacing: 1px;
+    position: relative;
+    background-color: #757575;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    transition-duration: 0.4s;
+    border-radius: 4px;
+    margin: 30px;
+  }
+  .cardQuiz:hover + .buttonTakeQuiz {
+    display: inline-block;
+  }
+`;

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./Quiz.css";
 import { withRouter, NavLink } from "react-router-dom";
 import { QuizColor, QuizColorStyle } from "../Themes/globalStyles";
+import { useLocation } from "react-router-dom";
 
-function App() {
+function App(props) {
+  const location = useLocation();
   //
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -148,11 +150,25 @@ function App() {
     setShowRightAnwsersHard(true);
     setShowScoreFinalHard(false);
   };
+  //
+  //
+  const nameProps = location.state.name;
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <div class="wrapper">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+        <span class="circle circle-4"></span>
+        <span class="circle circle-5"></span>
+        <span class="circle circle-6"></span>
+        <span class="circle circle-7"></span>
+        <span class="circle circle-8"></span>
+      </div>
+    );
   } else {
     return (
       <QuizColor>
@@ -612,9 +628,17 @@ function App() {
             </div>
           </div>
         ) : (
-          <div className="bodyQuiz">
-            <div className="appQuiz">
-              <button>AVC</button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+            }}
+          >
+            <div className="appQuizStart">
+              {nameProps}
+              <button onClick={() => setStartQuiz(true)}>Start</button>
             </div>
           </div>
         )}

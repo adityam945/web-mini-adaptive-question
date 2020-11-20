@@ -32,7 +32,7 @@ function App() {
 
     axios
       .get(
-        `https://login-auth-web-mini.herokuapp.com/verifyToken?token=${token}`
+        `https://adaptive-question-api.herokuapp.com/verifyToken?token=${token}`
       )
       .then((response) => {
         setUserSession(response.data.token, response.data.user);
@@ -45,7 +45,18 @@ function App() {
   }, []);
 
   if (authLoading && getToken()) {
-    return <div className=" ">Checking Authentication...</div>;
+    return (
+      <div class="wrapper">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+        <span class="circle circle-4"></span>
+        <span class="circle circle-5"></span>
+        <span class="circle circle-6"></span>
+        <span class="circle circle-7"></span>
+        <span class="circle circle-8"></span>
+      </div>
+    );
   }
 
   return (
