@@ -44,7 +44,14 @@ function App(props) {
   //
   //
   useEffect(() => {
-    fetch("https://adityam945.github.io/aero-json-files/quiz.json")
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    };
+    fetch(
+      `https://adaptive-question-api.herokuapp.com/quiz/${id}`,
+      requestOptions
+    )
       .then((res) => res.json())
       .then(
         (result) => {
@@ -152,7 +159,9 @@ function App(props) {
   };
   //
   //
-  const nameProps = location.state.name;
+  const quizName = location.state.quizName;
+  const id = location.state.id;
+  const quizDescription = location.state.quizDescription;
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -629,6 +638,7 @@ function App(props) {
           </div>
         ) : (
           <div
+            className="bodyQuiz"
             style={{
               display: "flex",
               justifyContent: "center",
@@ -636,9 +646,14 @@ function App(props) {
               alignContent: "center",
             }}
           >
-            <div className="appQuizStart">
-              {nameProps}
-              <button onClick={() => setStartQuiz(true)}>Start</button>
+            <div className="appCardQuiz">
+              <h2 style={{ textAlign: "center" }}> {quizName}</h2>
+              <button
+                onClick={() => setStartQuiz(true)}
+                className="buttonTakeQuiz"
+              >
+                Start
+              </button>
             </div>
           </div>
         )}

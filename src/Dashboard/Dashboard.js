@@ -68,7 +68,7 @@ function Dashboard(props) {
               </h2>
               <h2 style={{ textAlign: "center" }}>{item.quizName}</h2>
               <div class="containerQuiz">
-                <p style={{ textAlign: "center" }}>{item.quizDescription}</p>
+                <p style={{ textAlign: "left" }}>{item.quizDescription}</p>
               </div>
               <button
                 className="buttonTakeQuizSyle"
@@ -76,7 +76,14 @@ function Dashboard(props) {
               >
                 <Link
                   activeClassName="active"
-                  to={{ pathname: "/quiz", state: { id: item._id } }}
+                  to={{
+                    pathname: "/quiz",
+                    state: {
+                      id: item._id,
+                      quizName: item.quizName,
+                      quizDescription: item.quizDescription,
+                    },
+                  }}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   Solve
