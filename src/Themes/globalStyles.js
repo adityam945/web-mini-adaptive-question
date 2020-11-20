@@ -62,7 +62,6 @@ export const QuizColor = styled.div`
   border-radius: 15px;
   padding: 20px;
   box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-  display: flex;
   justify-content: space-evenly;
 }
 `;

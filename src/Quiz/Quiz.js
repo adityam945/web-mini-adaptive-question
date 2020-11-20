@@ -3,9 +3,12 @@ import "./Quiz.css";
 import { withRouter, NavLink } from "react-router-dom";
 import { QuizColor, QuizColorStyle } from "../Themes/globalStyles";
 import { useLocation } from "react-router-dom";
+import { getUser, removeUserSession } from "../Utils/Common";
 
 function App(props) {
   const location = useLocation();
+  const user = getUser();
+
   //
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -68,6 +71,65 @@ function App(props) {
         }
       );
   }, []);
+  //
+  const handleSubmitHardSection = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: user.name,
+        section1: score,
+        section2: scoreHard,
+        section1Difficulty: "moderate",
+        section2Difficulty: "hard",
+        totalScore: score + scoreHard,
+        quizName: quizName,
+      }),
+    };
+    fetch(
+      `https://adaptive-question-api.herokuapp.com/userdata/add`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+        },
+
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  };
+  const handleSubmitEasySection = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: user.name,
+        section1: score,
+        section2: scoreEasy,
+        section1Difficulty: "moderate",
+        section2Difficulty: "easy",
+        totalScore: score + scoreEasy,
+        quizName: quizName,
+      }),
+    };
+    fetch(
+      `https://adaptive-question-api.herokuapp.com/userdata/add`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {},
+
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  };
 
   //
   const handleAnswerOptionClick = (isCorrect) => {
@@ -126,14 +188,16 @@ function App(props) {
     }
   };
   //
-  const finalScoreEasy = () => {
+  const finalScoreEasy = async () => {
     setShowScoreFinalEasy(true);
     setEasy(false);
+    await handleSubmitEasySection();
   };
 
-  const finalScoreHard = () => {
+  const finalScoreHard = async () => {
     setShowScoreFinalHard(true);
     setHard(false);
+    await handleSubmitHardSection();
   };
   //
   const handlePreviousOptionClickHard = (thisQuestion) => {
@@ -480,9 +544,9 @@ function App(props) {
                   >
                     <p>
                       <h2>Section 1</h2>
-                      You scored {score} out of {questions.length} <br />
+                      You scored {score} out of 5 <br />
                       <h2> Section 2</h2>
-                      You scored {scoreEasy} out of {questions.length} <br />
+                      You scored {scoreEasy} out of 5 <br />
                     </p>
                     <div>
                       <h2> Total Score is {score + scoreEasy}</h2>
@@ -517,9 +581,9 @@ function App(props) {
                   >
                     <p>
                       <h2>Section 1</h2>
-                      You scored {score} out of {questions.length} <br />
+                      You scored {score} out of 5 <br />
                       <h2> Section 2</h2>
-                      You scored {scoreHard} out of {questions.length} <br />
+                      You scored {scoreHard} out of 5 <br />
                     </p>
                     <div>
                       <h2> Total Score is {score + scoreHard}</h2>
@@ -638,7 +702,6 @@ function App(props) {
           </div>
         ) : (
           <div
-            className="bodyQuiz"
             style={{
               display: "flex",
               justifyContent: "center",
