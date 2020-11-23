@@ -135,6 +135,25 @@ export const ProfileCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme }) => theme.loginCardBg};
+    background-color: ${({ theme }) => theme.profileCardBg};
+  }
+  .cardProfile {
+    background: ${({ theme }) => theme.profileCardBg};
+    color: ${({ theme }) => theme.text};
+    font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
+    transition: all 0.5s linear;
+  }
+
+  .grounded-radiants {
+    position: relative;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    background: linear-gradient(#9ccc65, #33691e);
+    background-clip: padding-box;
+    padding: 10px;
+    box-shadow: 0 3px 9px black, inset 0 0 9px white;
+    left: 0px;
+    margin: 0px;
+    margin-right: 10px;
   }
 `;

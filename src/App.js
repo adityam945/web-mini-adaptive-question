@@ -21,10 +21,6 @@ import { lightTheme, darkTheme } from "./Themes/Themes";
 //
 //
 function App(props) {
-  const handleLogout = () => {
-    removeUserSession();
-    props.history.push("/login");
-  };
   const token = getToken();
   const [authLoading, setAuthLoading] = useState(true);
   const [theme, setTheme] = useState("light");
@@ -100,7 +96,7 @@ function App(props) {
                       to="/profile"
                       className="headera"
                     >
-                      View Profile
+                      Profile
                     </NavLink>
                   </div>
                 ) : (
@@ -118,11 +114,7 @@ function App(props) {
                 <div>
                   <Button onClick={themeToggler}>
                     <a>
-                      {theme === "light" ? (
-                        <a>Switch to Dark Mode</a>
-                      ) : (
-                        <a>Switch to Light Mode</a>
-                      )}
+                      {theme === "light" ? <a>Dark Mode</a> : <a>Light Mode</a>}
                     </a>
                   </Button>
                 </div>

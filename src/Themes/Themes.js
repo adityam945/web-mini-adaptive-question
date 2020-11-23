@@ -10,6 +10,8 @@ export const lightTheme = {
   //
   QuizCard: "",
   QuizCardBg: "#b2ebf2",
+  //
+  profileCardBg: "#ffd54f",
 };
 export const darkTheme = {
   body: "#363537",
@@ -23,4 +25,6 @@ export const darkTheme = {
   //
   QuizCard: "",
   QuizCardBg: "#263238",
+  //
+  profileCardBg: "#263238",
 };
