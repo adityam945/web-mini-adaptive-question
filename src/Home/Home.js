@@ -102,12 +102,6 @@ function Home() {
 
   return (
     <div>
-      <input type="button" onClick={addEntryClick} value="Add" />
-      <div>
-        {theArray.map((entry) => (
-          <div>{entry}</div>
-        ))}
-      </div>
       <div class="cardHome">
         <h2 style={{ textAlign: "center" }}>
           Performance Based Adaptive Questioning
