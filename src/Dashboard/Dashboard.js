@@ -18,6 +18,9 @@ function Dashboard(props) {
     props.history.push("/login");
   };
   useEffect(() => {
+    //
+
+    //
     fetch("https://adaptive-question-api.herokuapp.com/quiz/")
       .then((res) => res.json())
       .then(

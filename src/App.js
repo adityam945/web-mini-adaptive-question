@@ -82,15 +82,15 @@ function App(props) {
                   Home
                 </NavLink>
 
-                <NavLink
-                  activeClassName="active"
-                  to="/dashboard"
-                  className="headera"
-                >
-                  Dashboard
-                </NavLink>
                 {token ? (
                   <div style={{ display: "flex" }}>
+                    <NavLink
+                      activeClassName="active"
+                      to="/dashboard"
+                      className="headera"
+                    >
+                      Dashboard
+                    </NavLink>
                     <NavLink
                       activeClassName="active"
                       to="/profile"

@@ -109,16 +109,29 @@ function Home() {
 
   return (
     <div>
-      <div class="cardHome">
-        <h2 style={{ textAlign: "center" }}>
-          Performance Based Adaptive Questioning
-        </h2>
-        <div class="containerHome">
-          <p style={{ textAlign: "center" }}>
-            An adaptive model of Questioning which selects questions based on
-            performance results on first section
-          </p>
-        </div>
+      <div>
+        <article class="comic">
+          <div class="panel">
+            <p class="text top-left">Welocome </p>
+
+            <p class="text bottom-right">...something amazing happened</p>
+          </div>
+          <div class="panel">
+            <p class="text top-left">Try resizing...</p>
+            <p class="text bottom-right">...it's responsive</p>
+          </div>
+          <div class="panel">
+            <p class="top-left text">A speech bubble</p>
+          </div>
+          <div class="panel"></div>
+          <div class="panel"></div>
+          <div class="panel"></div>
+          <div class="panel"></div>
+          <div class="panel"></div>
+          <div class="panel">
+            <p class="text bottom-right">THE END</p>
+          </div>
+        </article>
       </div>
       <div style={style}>
         <h3 style={{ textAlign: "center" }}>
