@@ -88,7 +88,14 @@ function Home() {
       setChatLog([...chatLog, JsonRes]);
       setChatLogLength(chatLogLength + 1);
     } else {
-      setChatLog("Try other");
+      const JsonRes = {
+        response: "I did'nt get you",
+        userResponse: question,
+        id: chatLogLength,
+      };
+
+      setChatLog([...chatLog, JsonRes]);
+      setChatLogLength(chatLogLength + 1);
     }
   };
 
