@@ -31,56 +31,88 @@ const useStyles = makeStyles((theme) => ({
 }));
 //
 //
-const chatBotArray = [
-  {
-    id: "1",
-    message: "What is your name?",
-    trigger: "2",
-  },
-  {
-    id: "2",
-    user: true,
-    trigger: "3",
-  },
-  {
-    id: "3",
-    message: "Hi {previousValue}, nice to meet you!",
-    end: true,
-  },
-];
 //
 const know = {
-  hello: "hi",
-  "how are you?": "good",
-  ok: ":)",
-  hi: "aaajca",
+  hello: "Hello,How can I help You",
+  "how to login?":
+    "Login is done by the admin,Please kindly contact your Teacher.",
+  "login?":
+    "Login is done through the admin,Please kindly contact your Teacher.",
+  "what can this app do?":
+    "It provides certain MCQ questions that students should answer within the options and at final it calculate the total marks that student has scorred.",
+  "do?":
+    "It provides certain MCQ questions that students should answer within the options and at final it calculate the total marks that student has scorred.",
+  "who can attend?": "Everyone whose account has been created by admin.",
+  "attend?": "Everyone whose account has been created by admin.",
+  "what kind of topics are there?":
+    "Topics regarding the Computer Science and GeneralKnowledge",
+  "there?": "Topics regarding the Computer Science and GeneralKnowledge",
+  "what are the types of quiz questions can we expect?":
+    "There will be three set of questions Easy,Moderate and Difficult.Easy questions is common to all.If the student gets less than average marks of given set of questions then he gets moderate questions/If student get's more than average marks in Easy questions he gets Difficult Question.",
+  expect:
+    "There will be three set of questions Easy,Moderate and Difficult.Easy questions is common to all.If the student gets less than average marks of given set of questions then he gets moderate questions/If student get's more than average marks in Easy questions he gets Difficult Question.",
+  "when we will get to know the marks of the Quiz?":
+    "You will get the marks instantly after you finish answering to all questions.",
+  "quiz?":
+    "You will get the marks instantly after you finish answering to all questions.",
+  "is there any negative marks for answered question?":
+    "No! there is no negative marks for any set of questions.",
+  "questions?": "No! there is no negative marks for any set of questions.",
+  "is there dark mode?":
+    "Yes,After Login there is a button on top right you can use that.",
+  "dark mode?":
+    "Yes,After Login there is a button on top right you can use that.",
+  "what is the use of dashboard?":
+    "Dashboard is the place where you can login to attend quiz.",
+  "dashboard?": "Dashboard is the place where you can login to attend quiz.",
+  "is there any timer for each quiz-question?":
+    "Yes,there will be a certain limited time for each quiz-questions.",
+  "quiz-question?":
+    "Yes,there will be a certain limited time for each quiz-questions.",
+  "what do we do if we forgot password?":
+    "You need to contact to the respected admin/teacher.",
+  "password?": "You need to contact to the respected admin/teacher.",
+  "is the username and password is case-sensitive?":
+    "Yes,It is case-sensitive.",
+  "case-sensitive?": "Yes,It is case-sensitive.",
+  "is the topic of quiz is choosen by student or teacher?":
+    "It is choosen and set by the Teacher.",
+  "teacher?": "It is choosen and set by the Teacher.",
+  "can student see the previous attended quiz marks?":
+    "Yes,There will be track of every marks that have been previously attended by the students.",
+  "marks?":
+    "Yes,There will be track of every marks that have been previously attended by the students.",
+  "is it loaded only on mobile/pc?": "It can be loaded both on Mobile/PC",
+  "mobile/pc?": "It can be loaded both on Mobile/PC",
 };
-
-const myChat = [
-  {
-    question: "Hi",
-    answer: "Hello :)",
-  },
-];
 
 function Home() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [question, setquestion] = React.useState("");
+  const [questionMod, setquestionMod] = React.useState("");
+
   const [chatLogLength, setChatLogLength] = React.useState(1);
-  const [chatLog, setChatLog] = React.useState([]);
+  const [chatLog, setChatLog] = React.useState([
+    { response: "Hello, I am your Chat assistant", userResponse: "", id: 0 },
+  ]);
 
   //
   const [theArray, setTheArray] = React.useState([]);
   const addEntryClick = () => {
     setTheArray([...theArray, `Entry ${theArray.length}`]);
   };
-  const chat = (evt) => {
+  const chat = async (evt) => {
     evt.preventDefault();
+    setquestion(question.trim());
+
+    await subChat();
+  };
+  const subChat = () => {
     if (question in know) {
       //know[question]
       const JsonRes = {
-        response: know[question],
+        response: know[question.trim()],
         userResponse: question,
         id: chatLogLength,
       };
@@ -98,7 +130,6 @@ function Home() {
       setChatLogLength(chatLogLength + 1);
     }
   };
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -170,7 +201,7 @@ function Home() {
                 </div>
               </div>
               <div>
-                <div style={{ overflowY: "scroll", height: 250 }}>
+                <div style={{ overflowY: "scroll", height: 250, width: 400 }}>
                   <div>
                     {chatLog.map((item) => (
                       <div>
@@ -184,12 +215,21 @@ function Home() {
                   </div>
                 </div>
                 <form onSubmit={chat}>
-                  <input
-                    type="text"
-                    value={question}
-                    onChange={(e) => setquestion(e.target.value)}
-                  />
-                  <input type="submit" value="Submit" />
+                  <div>
+                    <input
+                      type="text"
+                      value={question}
+                      onChange={(e) =>
+                        setquestion(e.target.value.toLowerCase())
+                      }
+                      style={{ width: "70%" }}
+                    />
+                    <input
+                      type="submit"
+                      value="Talk"
+                      style={{ width: "25%" }}
+                    />
+                  </div>
                 </form>
               </div>
               <div
