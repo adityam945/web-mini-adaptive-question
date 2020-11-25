@@ -142,7 +142,7 @@ function Home() {
 
   return (
     <div>
-      <div>
+      <div style={{ height: "100%" }}>
         <article class="comic">
           <div class="panel">
             <p class="text top-left textBold" style={{ fontSize: 18 }}>
@@ -167,10 +167,12 @@ function Home() {
               </h1>
             </div>
 
-            <p class="text bottom-right">Try A New Approach of Questioning</p>
+            <p class="text bottom-right">
+              Experience New Approach of Questioning
+            </p>
           </div>
           <div class="panel">
-            <p class="text top-left">and Evaluating </p>
+            <p class="text top-left">Evaluate </p>
             <div
               className="textCenter"
               style={{
