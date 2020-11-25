@@ -39,12 +39,11 @@
 .comic {
   display: flex;
   flex-wrap: wrap;
-  font-family: "Comic Sans", cursive;
   padding: 1vmin;
 }
 
 .panel {
-  background-color: #fff;
+  background-color: #000000;
   border: solid 2px #000;
   box-shadow: 0 6px 6px -6px #000;
   display: inline-block;
@@ -56,9 +55,12 @@
 }
 
 .text {
-  border: solid 2px #000;
+  border: solid 2px #000000;
   margin: 0;
   padding: 3px 10px;
+}
+.textBold {
+  font-weight: bolder;
 }
 
 .top-left {

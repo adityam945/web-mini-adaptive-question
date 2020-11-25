@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import ChatBot from "react-simple-chatbot";
+import comicImage from "../assets/beautiful.jpg";
+import comicImage1 from "../assets/bang.png";
 
 import { Fade, Avatar } from "@material-ui/core";
 var style = {
@@ -143,23 +145,187 @@ function Home() {
       <div>
         <article class="comic">
           <div class="panel">
-            <p class="text top-left">Welocome </p>
+            <p class="text top-left textBold" style={{ fontSize: 18 }}>
+              {" "}
+              Welocome to{" "}
+            </p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1 style={{ color: "black", fontSize: 25 }}>
+                Performance Based Adaptive Questioning
+              </h1>
+            </div>
 
-            <p class="text bottom-right">...something amazing happened</p>
+            <p class="text bottom-right">Try A New Approach of Questioning</p>
           </div>
           <div class="panel">
-            <p class="text top-left">Try resizing...</p>
-            <p class="text bottom-right">...it's responsive</p>
+            <p class="text top-left">and Evaluating </p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1 style={{ color: "black", fontSize: 25 }}>
+                🎭 Your Performance{" "}
+              </h1>
+            </div>
+            <p class="text bottom-right">...it's fun</p>
           </div>
           <div class="panel">
-            <p class="top-left text">A speech bubble</p>
+            <p class="top-left text">Select from</p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1 style={{ color: "black", fontSize: 25 }}>
+                Wide Range of Challenges
+              </h1>
+            </div>
+            <p class="text bottom-right">To Solve</p>
           </div>
-          <div class="panel"></div>
-          <div class="panel"></div>
-          <div class="panel"></div>
-          <div class="panel"></div>
-          <div class="panel"></div>
           <div class="panel">
+            <img src={comicImage} height="100%" width="100%" />
+          </div>
+          <div class="panel">
+            {" "}
+            <p class="top-left text">Magic happens</p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1 style={{ color: "black", fontSize: 25 }}>
+                Difficulty of Questions Adapt
+              </h1>
+            </div>
+            <p class="text bottom-right">Based on Your Performance</p>
+          </div>
+          <div class="panel">
+            <p class="top-left text">More Queries</p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1 style={{ color: "black", fontSize: 25 }}>
+                Chat with Our Assistant <br /> ~PebaQ!
+              </h1>
+            </div>
+            <p class="text bottom-right">PebaQ!</p>
+          </div>
+          <div class="panel">
+            <p class="top-left text">And...</p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1
+                style={{
+                  color: "black",
+                  fontSize: 25,
+                  textDecoration: "underline",
+                  textDecorationColor: "red",
+                }}
+              >
+                Have Fun Answering....!
+              </h1>
+            </div>
+            <p class="text bottom-right">Every thing counts</p>
+          </div>
+          <div class="panel">
+            {" "}
+            <img src={comicImage1} height="100%" width="100%" />
+          </div>
+          <div class="panel">
+            <p class="top-left text">Finally....</p>
+            <div
+              className="textCenter"
+              style={{
+                textalignvertical: "center",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                textAlignVertical: "center",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <h1
+                style={{
+                  color: "black",
+                  fontSize: 25,
+                }}
+              >
+                {" "}
+                Accept the Challenge!
+                <br />
+                <a
+                  href="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    textDecoration: "underline",
+                    textDecorationColor: "red",
+                  }}
+                >
+                  Click here
+                </a>
+              </h1>
+            </div>
             <p class="text bottom-right">THE END</p>
           </div>
         </article>
@@ -215,22 +381,22 @@ function Home() {
                   </div>
                 </div>
                 <form onSubmit={chat}>
-                  <div>
-                    <input
-                      type="text"
-                      value={question}
-                      onChange={(e) =>
-                        setquestion(e.target.value.toLowerCase())
-                      }
-                      style={{ width: "70%" }}
-                    />
-                    <input
-                      type="submit"
-                      value="Talk"
-                      style={{ width: "25%" }}
-                    />
-                  </div>
+                  <input
+                    type="text"
+                    value={question}
+                    onChange={(e) => setquestion(e.target.value.toLowerCase())}
+                    style={{ width: "70%" }}
+                  />
+                  <input type="submit" value="Talk" style={{ width: "25%" }} />
                 </form>
+              </div>
+              <div>
+                Ask Me!:
+                <ol>
+                  <li>what can this app do?</li>
+                  <li>login? or how to login?</li>
+                  <li></li>
+                </ol>
               </div>
               <div
                 style={{ cursor: "pointer", marginTop: 40 }}
