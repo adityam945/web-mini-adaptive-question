@@ -8,18 +8,19 @@ import comicImage from "../assets/beautiful.jpg";
 import comicImage1 from "../assets/bang.png";
 import comicImage2 from "../assets/quiz-icon.png";
 import { HomeChatColor } from "../Themes/globalStyles";
+import SendIcon from "@material-ui/icons/Send";
+import { Grid } from "@material-ui/core";
 
 import { Fade, Avatar } from "@material-ui/core";
 var style = {
   backgroundColor: "#b0bec5",
   borderTop: "1px solid #E7E7E7",
-  padding: "20px",
   position: "fixed",
   left: "0",
   bottom: "0",
-  height: "auto",
-  width: "98%",
+  width: "100%",
   paddingTop: 0,
+  marginTop: 40,
 };
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -39,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
 //
 //
 const know = {
+  hi: "Hello,How can I help You",
+  yo: "Hello,How can I help You",
   hello: "Hello,How can I help You",
   "how to login?":
     "Login is done by the admin,Please kindly contact your Teacher.",
@@ -119,7 +122,16 @@ function Home() {
     await subChat();
   };
   const subChat = () => {
-    if (question in know) {
+    if (question === "") {
+      const JsonRes = {
+        response: "Ask me a question I cant read answer blank questions :(",
+        userResponse: question,
+        id: chatLogLength,
+      };
+
+      setChatLog([...chatLog, JsonRes]);
+      setChatLogLength(chatLogLength + 1);
+    } else if (question in know) {
       //know[question]
       const JsonRes = {
         response: know[question.trim()],
@@ -150,7 +162,7 @@ function Home() {
 
   return (
     <HomeChatColor>
-      <div style={{ height: "100%" }}>
+      <div style={{ height: "100%", marginBottom: 140 }}>
         <article class="comic">
           <div class="panel">
             <p class="text top-left textBold" style={{ fontSize: 18 }}>
@@ -342,16 +354,36 @@ function Home() {
       </div>
       <div style={style}>
         <div className="" style={{ marginBottom: 10 }}>
-          <main className="mainFooter">
-            <p className="pFooter">Performance Based Adaptive Questioning</p>
-          </main>
+          <Grid container>
+            <Grid item xs={12} md={12} lg={12}>
+              <main className="mainFooter">
+                <p className="pFooter">
+                  Performance Based
+                  <br /> Adaptive Questioning
+                </p>
+              </main>
+            </Grid>
+          </Grid>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div onClick={handleOpen} className="button-radiant">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingRight: 30,
+            bottom: 40,
+          }}
+        >
+          <div>
+            <a> Admin Login</a>
+          </div>
+          <div
+            onClick={handleOpen}
+            className="button-radiant"
+            style={{ bottom: 40 }}
+          >
             Chat with PebaQ!
           </div>
-          <div>Admin?</div>
         </div>
 
         {/*         
@@ -402,20 +434,22 @@ function Home() {
                       <br />
                     </div>
                   </div>
-                  <form onSubmit={chat}>
+                  <form
+                    onSubmit={chat}
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
                     <input
                       type="text"
                       value={question}
                       onChange={(e) =>
                         setquestion(e.target.value.toLowerCase())
                       }
-                      style={{ width: "70%" }}
+                      style={{ width: "70%", height: 30 }}
                     />
-                    <input
-                      type="submit"
-                      value="Talk"
-                      style={{ width: "25%" }}
-                    />
+
+                    <button type="submit" style={{ width: "25%" }}>
+                      <SendIcon />{" "}
+                    </button>
                   </form>
                 </div>
                 <div>
@@ -423,7 +457,8 @@ function Home() {
                   <ol>
                     <li>what can this app do?</li>
                     <li>login? or how to login?</li>
-                    <li></li>
+                    <li>what kind of topics are there?</li>
+                    <li>what are the types of quiz questions can we expect?</li>
                   </ol>
                 </div>
                 <div

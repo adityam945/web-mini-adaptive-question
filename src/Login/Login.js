@@ -10,6 +10,11 @@ function Login(props) {
   const username = useFormInput("");
   const password = useFormInput("");
   const [error, setError] = useState(null);
+  const [islogin, setIsLogin] = useState(false);
+  //
+  const [usernameSignUp, setUsernameSignUp] = useState("");
+  const [contactSignUp, setContactSignUp] = useState("");
+  const [decsriptionSignUp, setDescriptionSignup] = useState("");
 
   // handle button click of login form
   const handleLogin = () => {
@@ -38,65 +43,146 @@ function Login(props) {
       <div className="main1">
         <div className="app">
           <Grid container>
-            <Grid
-              item
-              xs={12}
-              md={12}
-              lg={12}
-              justify="top"
-              alignContent="top"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                display: "flex",
-                flex: 1,
-              }}
-            >
-              <h2 style={{ textAlign: "center" }}>Login</h2>
-              <br />
-              <div>
-                <label className="textToRight" style={{ fontSize: "20px" }}>
-                  Username
-                </label>
+            {islogin ? (
+              <Grid
+                item
+                xs={12}
+                md={12}
+                lg={12}
+                justify="top"
+                alignContent="top"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  display: "flex",
+                  flex: 1,
+                }}
+              >
+                <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+                <br />
+                <div>
+                  <label className="textToRight" style={{ fontSize: "20px" }}>
+                    Enter name
+                  </label>
 
-                <br />
-                <input
-                  className="textToRight"
-                  type="text"
-                  {...username}
-                  autoComplete="new-password"
-                  style={{ width: "100%" }}
-                />
-              </div>
-              <div style={{ marginTop: 10 }}>
-                <label className="textToRight" style={{ fontSize: "20px" }}>
-                  Password
-                </label>
-                <br />
-                <input
-                  className="textToRight"
-                  type="password"
-                  {...password}
-                  autoComplete="new-password"
-                  style={{ width: "100%" }}
-                />
-              </div>
-              {error && (
-                <>
-                  <small style={{ color: "red" }}>{error}</small>
                   <br />
-                </>
-              )}
-              <br />
-              <input
-                className="buttonTakeQuiz"
-                type="button"
-                value={loading ? "Please Wait(Authenticating User)" : "Login"}
-                onClick={handleLogin}
-                disabled={loading}
-              />
-              <br />
-            </Grid>
+                  <input
+                    className="textToRight"
+                    type="text"
+                    value={usernameSignUp}
+                    onChange={(e) => setUsernameSignUp(e.target.value)}
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div style={{ marginTop: 10 }}>
+                  <label className="textToRight" style={{ fontSize: "20px" }}>
+                    Refer your contact
+                  </label>
+                  <br />
+
+                  <input
+                    className="textToRight"
+                    type="text"
+                    value={contactSignUp}
+                    onChange={(e) => setContactSignUp(e.target.value)}
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div style={{ marginTop: 10 }}>
+                  <label className="textToRight" style={{ fontSize: "20px" }}>
+                    Give a short description about yourself
+                  </label>
+                  <br />
+                  <textarea
+                    className="textToRight"
+                    type="text"
+                    value={decsriptionSignUp}
+                    onChange={(e) => setDescriptionSignup(e.target.value)}
+                    style={{ width: "100%" }}
+                    rows="4"
+                  />
+                </div>
+
+                <input
+                  className="buttonTakeQuiz"
+                  type="button"
+                  value={loading ? "Please Wait(Authenticating User)" : "Login"}
+                  onClick={handleLogin}
+                  disabled={loading}
+                />
+                <br />
+                <p style={{ textAlign: "center" }}>Remember your login?</p>
+                <Button onClick={() => setIsLogin(false)}>
+                  <a className="atext">Click here</a>
+                </Button>
+              </Grid>
+            ) : (
+              <Grid
+                item
+                xs={12}
+                md={12}
+                lg={12}
+                justify="top"
+                alignContent="top"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  display: "flex",
+                  flex: 1,
+                }}
+              >
+                <h2 style={{ textAlign: "center" }}>Login</h2>
+                <br />
+                <div>
+                  <label className="textToRight" style={{ fontSize: "20px" }}>
+                    Username
+                  </label>
+
+                  <br />
+                  <input
+                    className="textToRight"
+                    type="text"
+                    {...username}
+                    autoComplete="new-password"
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                <div style={{ marginTop: 10 }}>
+                  <label className="textToRight" style={{ fontSize: "20px" }}>
+                    Password
+                  </label>
+                  <br />
+                  <input
+                    className="textToRight"
+                    type="password"
+                    {...password}
+                    autoComplete="new-password"
+                    style={{ width: "100%" }}
+                  />
+                </div>
+                {error && (
+                  <>
+                    <small style={{ color: "red" }}>{error}</small>
+                    <br />
+                  </>
+                )}
+                <br />
+                <input
+                  className="buttonTakeQuiz"
+                  type="button"
+                  value={loading ? "Please Wait(Authenticating User)" : "Login"}
+                  onClick={handleLogin}
+                  disabled={loading}
+                />
+                <br />
+                <p style={{ textAlign: "center" }}>
+                  Not a user yet! Don't worry
+                </p>
+                <Button onClick={() => setIsLogin(true)}>
+                  <a className="atext">Click here</a>
+                </Button>
+              </Grid>
+            )}
           </Grid>
         </div>
       </div>
