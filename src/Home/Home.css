@@ -53,7 +53,16 @@
   overflow: hidden;
   position: relative;
 }
+.atext {
+  color: #29b6f6;
+  text-decoration-color: #43a047;
 
+  transition: 0.5s;
+}
+.atext:hover {
+  color: #ef5350;
+  text-decoration-color: #ef5350;
+}
 .text {
   border: solid 2px #000000;
   margin: 0;
@@ -159,4 +168,39 @@
 
 .panel:nth-child(4n + 4) {
   background-image: radial-gradient(circle, lightcoral, tomato);
+}
+
+/* 
+
+
+
+ */
+.mainFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pFooter {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2rem;
+  background: linear-gradient(
+    to bottom,
+    #000,
+    #000 60%,
+    #9e9e9e 60%,
+    #9e9e9e 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-repeat: no-repeat;
+  transition: background 0.2s ease-out;
+  white-space: nowrap;
+  margin-top: 0px;
+}
+
+.pFooter:hover {
+  background-position: 0 11px;
 }

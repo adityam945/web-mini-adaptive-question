@@ -6,17 +6,20 @@ import Backdrop from "@material-ui/core/Backdrop";
 import ChatBot from "react-simple-chatbot";
 import comicImage from "../assets/beautiful.jpg";
 import comicImage1 from "../assets/bang.png";
+import comicImage2 from "../assets/quiz-icon.png";
+import { HomeChatColor } from "../Themes/globalStyles";
 
 import { Fade, Avatar } from "@material-ui/core";
 var style = {
-  backgroundColor: "gray",
+  backgroundColor: "#b0bec5",
   borderTop: "1px solid #E7E7E7",
   padding: "20px",
   position: "fixed",
   left: "0",
   bottom: "0",
   height: "auto",
-  width: "100%",
+  width: "98%",
+  paddingTop: 0,
 };
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -29,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    color: "black",
   },
 }));
 //
@@ -96,7 +100,11 @@ function Home() {
 
   const [chatLogLength, setChatLogLength] = React.useState(1);
   const [chatLog, setChatLog] = React.useState([
-    { response: "Hello, I am your Chat assistant", userResponse: "", id: 0 },
+    {
+      response: "Hello, I am PebaQ!, your Chat assistant",
+      userResponse: "",
+      id: 0,
+    },
   ]);
 
   //
@@ -141,7 +149,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <HomeChatColor>
       <div style={{ height: "100%" }}>
         <article class="comic">
           <div class="panel">
@@ -316,15 +324,15 @@ function Home() {
                 Accept the Challenge!
                 <br />
                 <a
+                  className="atext"
                   href="/login"
                   style={{
                     textDecoration: "none",
-                    color: "black",
                     textDecoration: "underline",
-                    textDecorationColor: "red",
                   }}
                 >
-                  Click here
+                  {" "}
+                  Click here{" "}
                 </a>
               </h1>
             </div>
@@ -333,13 +341,19 @@ function Home() {
         </article>
       </div>
       <div style={style}>
-        <h3 style={{ textAlign: "center" }}>
-          Performance Based Adaptive Questioning
-        </h3>
-
-        <div onClick={handleOpen} className="button-radiant">
-          ChatBot
+        <div className="" style={{ marginBottom: 10 }}>
+          <main className="mainFooter">
+            <p className="pFooter">Performance Based Adaptive Questioning</p>
+          </main>
         </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div onClick={handleOpen} className="button-radiant">
+            Chat with PebaQ!
+          </div>
+          <div>Admin?</div>
+        </div>
+
         {/*         
 
 
@@ -359,58 +373,71 @@ function Home() {
           }}
         >
           <Fade in={open}>
-            <div className={classes.paper}>
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div>
-                  <Avatar>RR</Avatar>
-                </div>
-                <div>
-                  <p> Hi, I'm your chat assistant</p>
-                </div>
-              </div>
-              <div>
-                <div style={{ overflowY: "scroll", height: 250, width: 400 }}>
+            <div>
+              <div className={classes.paper}>
+                <div
+                  className="chat"
+                  style={{ display: "flex", flexDirection: "row" }}
+                >
                   <div>
-                    {chatLog.map((item) => (
-                      <div>
-                        <p style={{ textAlign: "right" }}>
-                          {item.userResponse}
-                        </p>
-                        <p style={{ textAlign: "left" }}>{item.response}</p>
-                      </div>
-                    ))}
-                    <br />
+                    <Avatar>
+                      <img src={comicImage2} />
+                    </Avatar>
+                  </div>
+                  <div>
+                    <p> Hi, I'm your chat assistant</p>
                   </div>
                 </div>
-                <form onSubmit={chat}>
-                  <input
-                    type="text"
-                    value={question}
-                    onChange={(e) => setquestion(e.target.value.toLowerCase())}
-                    style={{ width: "70%" }}
-                  />
-                  <input type="submit" value="Talk" style={{ width: "25%" }} />
-                </form>
-              </div>
-              <div>
-                Ask Me!:
-                <ol>
-                  <li>what can this app do?</li>
-                  <li>login? or how to login?</li>
-                  <li></li>
-                </ol>
-              </div>
-              <div
-                style={{ cursor: "pointer", marginTop: 40 }}
-                onClick={handleClose}
-              >
-                close
+                <div>
+                  <div style={{ overflowY: "scroll", height: 250, width: 400 }}>
+                    <div>
+                      {chatLog.map((item) => (
+                        <div>
+                          <p style={{ textAlign: "right" }}>
+                            {item.userResponse}
+                          </p>
+                          <p style={{ textAlign: "left" }}>{item.response}</p>
+                        </div>
+                      ))}
+                      <br />
+                    </div>
+                  </div>
+                  <form onSubmit={chat}>
+                    <input
+                      type="text"
+                      value={question}
+                      onChange={(e) =>
+                        setquestion(e.target.value.toLowerCase())
+                      }
+                      style={{ width: "70%" }}
+                    />
+                    <input
+                      type="submit"
+                      value="Talk"
+                      style={{ width: "25%" }}
+                    />
+                  </form>
+                </div>
+                <div>
+                  Ask Me!:
+                  <ol>
+                    <li>what can this app do?</li>
+                    <li>login? or how to login?</li>
+                    <li></li>
+                  </ol>
+                </div>
+                <div
+                  style={{ cursor: "pointer", marginTop: 40 }}
+                  onClick={handleClose}
+                >
+                  close
+                </div>
               </div>
             </div>
           </Fade>
         </Modal>
       </div>
-    </div>
+    </HomeChatColor>
   );
 }
 

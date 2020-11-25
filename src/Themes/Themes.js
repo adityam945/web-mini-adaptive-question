@@ -12,6 +12,8 @@ export const lightTheme = {
   QuizCardBg: "#b2ebf2",
   //
   profileCardBg: "#ffd54f",
+  //
+  homeChatBg: "#ffffff",
 };
 export const darkTheme = {
   body: "#363537",
@@ -27,4 +29,5 @@ export const darkTheme = {
   QuizCardBg: "#263238",
   //
   profileCardBg: "#263238",
+  homeChatBg: "#263238",
 };

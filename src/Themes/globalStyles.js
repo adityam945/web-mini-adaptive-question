@@ -157,3 +157,12 @@ export const ProfileCard = styled.div`
     margin-right: 10px;
   }
 `;
+
+export const HomeChatColor = styled.div`
+  .chat {
+    background: ${({ theme }) => theme.homeChatBg};
+    color: ${({ theme }) => theme.text};
+    transition: all 0.5s linear;
+    border: "2px solid #000";
+  }
+`;

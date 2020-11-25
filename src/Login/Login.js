@@ -29,7 +29,7 @@ function Login(props) {
         setLoading(false);
         if (error.response.status === 401)
           setError(error.response.data.message);
-        else setError("Something went wrong. Please try again later.");
+        else setError("Something went wrong. Please try again");
       });
   };
 
