@@ -15,6 +15,7 @@ function Login(props) {
   const [usernameSignUp, setUsernameSignUp] = useState("");
   const [contactSignUp, setContactSignUp] = useState("");
   const [decsriptionSignUp, setDescriptionSignup] = useState("");
+  const [postSignUp, setPostSignUp] = useState([]);
 
   // handle button click of login form
   const handleLogin = () => {
@@ -36,6 +37,38 @@ function Login(props) {
           setError(error.response.data.message);
         else setError("Something went wrong. Please try again");
       });
+  };
+
+  const handleSignup = () => {
+    // if (
+    //   usernameSignUp === " " &&
+    //   contactSignUp === " " &&
+    //   decsriptionSignUp === " "
+    // ) {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: usernameSignUp,
+        contact: contactSignUp,
+        userDescription: decsriptionSignUp,
+      }),
+    };
+    fetch(
+      `https://adaptive-question-api.herokuapp.com/usersignup/add`,
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setPostSignUp(result);
+        },
+
+        (error) => {}
+      );
+    // } else {
+    //   alert("Provide correct details to continue");
+    // }
   };
 
   return (
@@ -60,6 +93,7 @@ function Login(props) {
               >
                 <h2 style={{ textAlign: "center" }}>Sign Up</h2>
                 <br />
+
                 <div>
                   <label className="textToRight" style={{ fontSize: "20px" }}>
                     Enter name
@@ -67,6 +101,7 @@ function Login(props) {
 
                   <br />
                   <input
+                    required
                     className="textToRight"
                     type="text"
                     value={usernameSignUp}
@@ -106,11 +141,13 @@ function Login(props) {
                 <input
                   className="buttonTakeQuiz"
                   type="button"
-                  value={loading ? "Please Wait(Authenticating User)" : "Login"}
-                  onClick={handleLogin}
-                  disabled={loading}
+                  value="Make A Request"
+                  onClick={handleSignup}
                 />
                 <br />
+                <a style={{ textAlign: "center" }}>
+                  {JSON.stringify(postSignUp.message)}
+                </a>
                 <p style={{ textAlign: "center" }}>Remember your login?</p>
                 <Button onClick={() => setIsLogin(false)}>
                   <a className="atext">Click here</a>
