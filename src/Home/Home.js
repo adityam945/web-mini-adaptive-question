@@ -375,7 +375,14 @@ function Home() {
           }}
         >
           <div>
-            <a> Admin Login</a>
+            <a
+              href="https://web-mini-adaptive-question-admin.vercel.app/"
+              className="atext"
+              style={{ marginLeft: 20, fontSize: 25, bottom: 40 }}
+            >
+              {" "}
+              Admin Login
+            </a>
           </div>
           <div
             onClick={handleOpen}

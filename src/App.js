@@ -13,6 +13,7 @@ import { getToken, removeUserSession, setUserSession } from "./Utils/Common";
 import Quiz from "./Quiz/Quiz";
 import Profile from "./Profile/Profile";
 import "./App.css";
+import AboutApp from "./Dashboard/AboutApp";
 //
 //theme imports
 import { ThemeProvider } from "styled-components";
@@ -98,6 +99,14 @@ function App(props) {
                     >
                       Profile
                     </NavLink>
+                    <NavLink
+                      exact
+                      activeClassName="active"
+                      to="/about"
+                      className="headera"
+                    >
+                      About
+                    </NavLink>
                   </div>
                 ) : (
                   <NavLink
@@ -126,6 +135,7 @@ function App(props) {
                   <PrivateRoute path="/dashboard" component={Dashboard} />
                   <PrivateRoute path="/profile" component={Profile} />
                   <PrivateRoute path="/quiz" component={Quiz} />
+                  <PrivateRoute path="/about" component={AboutApp} />
                 </Switch>
               </div>
             </div>
