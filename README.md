@@ -4,4 +4,4 @@
 
 ![ScreenShot](https://raw.github.com/adityam945/web-mini-adaptive-question/Screenshot-1.png)
 
-![Alt text](https://raw.github.com/adityam945/web-mini-adaptive-question/Screenshot-1.png?raw=true "Optional Title")
+![Alt text](/Screenshot-1.png?raw=true "Optional Title")
