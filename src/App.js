@@ -6,7 +6,6 @@ import ScrollToTop from "./ScrollToTop/ScrollTopPage";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
 import Home from "./Home/Home";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import PrivateRoute from "./Utils/PrivateRoute";
 import PublicRoute from "./Utils/PublicRoute";
 import { getToken, removeUserSession, setUserSession } from "./Utils/Common";
@@ -19,6 +18,7 @@ import AboutApp from "./Dashboard/AboutApp";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles, Button } from "./Themes/globalStyles";
 import { lightTheme, darkTheme } from "./Themes/Themes";
+import { Typography } from "@material-ui/core";
 //
 //
 function App(props) {
@@ -122,9 +122,13 @@ function App(props) {
 
                 <div>
                   <Button onClick={themeToggler}>
-                    <a>
-                      {theme === "light" ? <a>Dark Mode</a> : <a>Light Mode</a>}
-                    </a>
+                    <Typography>
+                      {theme === "light" ? (
+                        <Typography>Dark Mode</Typography>
+                      ) : (
+                        <Typography>Light Mode</Typography>
+                      )}
+                    </Typography>
                   </Button>
                 </div>
               </div>

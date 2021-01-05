@@ -5,7 +5,7 @@ import { QuizColor, QuizColorStyle } from "../Themes/globalStyles";
 import { useLocation } from "react-router-dom";
 import { getUser } from "../Utils/Common";
 
-function App(props) {
+function Quiz(props) {
   const location = useLocation();
   const user = getUser();
 
@@ -724,4 +724,4 @@ function App(props) {
   }
 }
 
-export default withRouter(App);
+export default withRouter(Quiz);
