@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Getting Started with this project
+
+1. git clone https://github.com/adityam945/web-mini-adaptive-question.git
+2. npm i
+3. npm start
 
 # web-mini-adaptive-question
 
