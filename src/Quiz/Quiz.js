@@ -3,7 +3,7 @@ import "./Quiz.css";
 import { withRouter, NavLink } from "react-router-dom";
 import { QuizColor, QuizColorStyle } from "../Themes/globalStyles";
 import { useLocation } from "react-router-dom";
-import { getUser, removeUserSession } from "../Utils/Common";
+import { getUser } from "../Utils/Common";
 
 function App(props) {
   const location = useLocation();
@@ -70,7 +70,7 @@ function App(props) {
           setError(error);
         }
       );
-  }, []);
+  });
   //
   const handleSubmitHardSection = () => {
     const requestOptions = {
@@ -225,7 +225,6 @@ function App(props) {
   //
   const quizName = location.state.quizName;
   const id = location.state.id;
-  const quizDescription = location.state.quizDescription;
 
   if (error) {
     return <div>Error: {error.message}</div>;

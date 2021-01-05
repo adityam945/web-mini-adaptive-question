@@ -3,7 +3,6 @@ import "./Home.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-import ChatBot from "react-simple-chatbot";
 import comicImage from "../assets/beautiful.jpg";
 import comicImage1 from "../assets/bang.png";
 import comicImage2 from "../assets/quiz-icon.png";
